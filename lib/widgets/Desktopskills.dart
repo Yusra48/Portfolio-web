@@ -1,0 +1,61 @@
+import 'package:flutter/material.dart';
+import 'package:portfolio_web/consonants/Colors.dart';
+import 'package:portfolio_web/consonants/Skillsconst.dart';
+
+class Desktopskills extends StatelessWidget {
+  const Desktopskills({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        for (int i = 0; i < platformItems.length; i++)
+          ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 450),
+              child: Wrap(
+                spacing: 5,
+                runSpacing: 5,
+                children: [
+                  Container(
+                    width: 200,
+                    decoration: BoxDecoration(
+                      color: CustomColor.bgLight2,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: ListTile(
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      leading: Image.asset(
+                        platformItems[i]["img"],
+                        width: 26,
+                      ),
+                      title: Text(platformItems[i]["title"]),
+                    ),
+                  )
+                ],
+              )),
+        SizedBox(width: 50),
+        Flexible(
+          child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 500),
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: [
+                  for (int i = 0; i < skillsItems.length; i++)
+                    Chip(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                      backgroundColor: CustomColor.bgLight2,
+                      label: Text(skillsItems[i]["title"]),
+                      avatar: Image.asset(skillsItems[i]["img"]),
+                    )
+                ],
+              )),
+        )
+      ],
+    );
+  }
+}
